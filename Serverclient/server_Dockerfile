@@ -1,0 +1,11 @@
+FROM python:3.8-slim
+
+# Set the working directory to /testwork
+WORKDIR /testwork
+
+# Copy the server.py and config.json files into the container at /testwork
+COPY server.py /testwork/
+COPY config.json /testwork/
+
+# Run the Python script when the container launches
+ENTRYPOINT ["python", "/testwork/server.py"]
