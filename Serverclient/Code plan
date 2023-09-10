@@ -1,0 +1,11 @@
+my_project # Main Directory
+    /server #sub Directory_1
+        -Dockerfile
+        -server.py
+        -config.json
+
+    /client #sub Directory_2
+        -Dockerfile
+        -client.py
+        -config.json
+ docker-compose.yml #docker compose yml file
