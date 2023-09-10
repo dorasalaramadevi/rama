@@ -1,0 +1,8 @@
+{
+    "server1_ip": "127.0.0.1",
+    "server1_port": 5020,
+    "server2_ip": "127.0.0.1",
+    "server2_port": 6030,
+    "buffer_size" : 1024
+}
+
