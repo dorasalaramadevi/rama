@@ -1,5 +1,6 @@
 import socket
 import json
+
 def load_config():
     with open('config.json', 'r') as file:
         data = json.load(file)
@@ -23,7 +24,6 @@ def start_server(host, port):
                 if message == "exit":
                     break
                 conn.sendall(message.encode())
-
 config = load_config()
 
 if __name__ == "__main__":
