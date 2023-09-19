@@ -1,10 +1,17 @@
-from flask import Flask
+from flask import Flask, jsonify
+import json
+
 app = Flask(__name__)
-@app.route('/hello', methods=['GET'])
 
-# return json output from a data file
+# Load data from a JSON file
+with open('data.json', 'r') as json_file:
+    data = json.load(json_file)
 
-def hello():
-    return "Hello, World!"
+# Define a route to retrieve JSON data
+@app.route('/get_data', methods=['GET'])
+
+def get_data():
+    return jsonify(data)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
