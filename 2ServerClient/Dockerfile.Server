@@ -1,0 +1,12 @@
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the server.py and config.json files into the container at /app
+COPY server.py .
+COPY conjson .
+
+# Run the Python script when the container launches
+ENTRYPOINT ["python", "server.py"]
