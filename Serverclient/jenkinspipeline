@@ -13,7 +13,7 @@ pipeline {
 
                     sh 'ls'
 
-                    sh 'docker build -t flask -f server_Dockerfile .'
+                    sh 'docker build -t server -f server_Dockerfile .'
 
                 }
 
