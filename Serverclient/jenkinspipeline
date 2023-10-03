@@ -9,7 +9,7 @@ pipeline {
 
             steps {
 
-                dir('  Serverclient') {
+                dir('Serverclient') {
 
                     sh 'ls'
 
