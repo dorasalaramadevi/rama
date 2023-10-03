@@ -5,6 +5,7 @@ WORKDIR /testwork
 
 # Copy the server.py and config.json files into the container at /testwork
 COPY server.py /testwork/
+COPY client.py /testwork/
 COPY config.json /testwork/
 
 # Run the Python script when the container launches
