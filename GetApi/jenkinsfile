@@ -15,6 +15,10 @@ pipeline {
 
                     sh 'docker build -t flask -f getDockerfile .'
 
+                    sh 'docker images'
+
+                    sh 'docker run flask'
+
                 }
 
             }
