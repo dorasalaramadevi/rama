@@ -1,7 +1,14 @@
 pipeline {
 
     agent any
- 
+
+    environment {
+
+        EC2_HOST = '16.16.211.89'
+
+        EC2_USER = 'ubuntu'
+
+    }
 
     stages {
 
@@ -9,15 +16,63 @@ pipeline {
 
             steps {
 
-                dir('GetApi') {
+                dir('Flask GET Rest API') {
 
                     sh 'ls'
 
-                    sh 'docker build -t flask -f getDockerfile .'
+                    sh 'docker build -t flask -f Dockerfile .'
 
-                    sh 'docker images'
+                }
 
-                    sh 'docker run -d flask'
+            }
+
+        }
+
+ 
+
+        stage('Push to Docker Hub') {
+
+            steps {
+
+                sh "docker login -u rama987 -p Dorasala@123devi"
+
+                sh 'docker tag flask rama987/rama:flask'
+
+                sh "docker push rama987/rama:flask"
+
+            }
+
+        }
+
+ 
+
+        stage('Pull Docker Image on EC2') {
+
+            steps {
+
+                script {
+
+                    withCredentials([file(credentialsId: 'rama', variable: 'PRIVATE_KEY_FILE')]) {
+
+                        sh """
+
+                            chmod 400 \$PRIVATE_KEY_FILE
+
+                            ssh -i \$PRIVATE_KEY_FILE -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \$EC2_USER@\$EC2_HOST<< EOF
+
+                            
+ 
+
+                            sudo docker login -u rama987/rama -p 'Dorasala@123devi'
+
+                            sudo docker pull rama987/rama:flask
+
+                            sudo docker run -d -p 5000:5000 --name flask-app rama987/rama:flask
+
+
+                        """
+
+                    }
 
                 }
 
