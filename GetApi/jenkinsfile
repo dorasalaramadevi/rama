@@ -17,7 +17,7 @@ pipeline {
 
                     sh 'docker images'
 
-                    sh 'docker run flask'
+                    sh 'docker run -d flask'
 
                 }
 
