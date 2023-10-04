@@ -16,7 +16,7 @@ pipeline {
 
             steps {
 
-                dir('Flask GET Rest API') {
+                dir('GetApi') {
 
                     sh 'ls'
 
